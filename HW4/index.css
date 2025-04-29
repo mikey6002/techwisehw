@@ -1,0 +1,18 @@
+#hero {
+    width: 100%;
+    height: 30vh;
+    background-color: pink;
+}
+
+#whyUs {
+    width: 40%;
+}
+/*The @media rule in CSS is used to apply styles conditionally based on the screen size, device type, or other properties. It's a key feature for responsive design, ensuring that your website looks good on different screen sizes.*/
+/* Make whyUs and callToAction full width on small screens */
+@media (max-width: 800px) {
+    #whyUs,
+    #callToAction {
+        width: 100%;
+    }
+}
+
