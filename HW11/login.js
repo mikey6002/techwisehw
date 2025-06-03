@@ -11,6 +11,11 @@ const emailError = document.querySelector('#emailError');
 const passwordInput = document.querySelector('#password');
 const togglePassword = document.querySelector('#togglePassword');
 const confirmPasswordInput = document.querySelector('#confirmPassword')
+const confirmPasswordInputError =document.querySelector("#confirmPasswordError")
+const Full_Name = document.querySelector("#Full_Name")
+const Username = document.querySelector("#Username")
+
+
 
 console.log(emailInput);
 console.log(emailError);
@@ -32,6 +37,8 @@ emailInput.addEventListener('focusout', (e) => {
         emailError.classList.add('hidden');
     }
 })
+
+confirmPasswordInput
 
 togglePassword.addEventListener('click', () => {
     
