@@ -9,10 +9,10 @@
 <body class="bg-gray-300 flex justify-center items-center min-h-screen">
     <div class="bg-white p-8 rounded shadow-md w-80">
         <h2 class="text-2xl font-bold mb-4 text-center">SignUp</h2>
-        <form id="loginForm" class="space-y-4">
+        <form id="Signup Form" class="space-y-4">
                 <div>
                     <label for="Full_Name" class = "block text-sm font-medium">Full Name</label>
-                    <input type="Full_Name" id="Username" class="w-full p-2 border rounded mt-1" placeholder="Enter Full Name">
+                    <input type="Full_Name" id="Full_Name" class="w-full p-2 border rounded mt-1" placeholder="Enter Full Name">
                 </div>
 
                 <div>
@@ -34,16 +34,34 @@
                 
                 <div>
                     <label for="check_password" class="block text-sm font-medium">Confirm Password</label>
-                    <input type="check_password" id="check_password" class="w-full p-2 border rounded mt-1"placeholder="Confirm Password" >
+                    <input type="password" id="check_password" class="w-full p-2 border rounded mt-1"placeholder="Confirm Password" >
                     <p id="passwordError" class="text-red-500 text-xs mt-1 hidden">Invalid Password!</p>
                 </div>
+
+                <div>
+                    <label for="text" class="block text-sm font-medium">Please check the boxes below if: </label>
+                </div>
+                <br/>
+
+
+                <div>
+                    <label for="checkage" class="block text-sm font-medium">You over 13? <input type="checkbox"  id = "checkage" onclick="checkAgeFunction()">  </label>
+                </div>
+
+
+                <div>
+                    <label for="terms" class="block text-sm font-medium">Agree To our Terms of Service? <input type="checkbox"  id = "check_TOS" oninput="CheckthingsFilled()" onclick="checkTOSFunction()">  </label>
+                    
+                </div>
+
+
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white p-1 rounded mt-4">SignUp</button>
         </form>
 
     </div>
 
-    <script src="login.js"></script>
+    <script src="Signup.js"></script>
     
 </body>
 </html>
