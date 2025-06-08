@@ -1,32 +1,18 @@
-// const loginForm = document.getElementById('loginForm');
-// console.log(loginForm);
-
-// const emailInput = document.getElementById('email');
-// const emailError = document.getElementById('emailError');
-// const passwordInput = document.getElementById('password');
-// const togglePassword = document.getElementById('togglePassword');
-
 const emailInput = document.querySelector('#email');
 const emailError = document.querySelector('#emailError');
 const passwordInput = document.querySelector('#password');
 const togglePassword = document.querySelector('#togglePassword');
-const confirmPasswordInput = document.querySelector('#confirmPassword');
-const confirmPasswordInputError =document.getElementById('check_password');
-const Full_Name = document.querySelector("#Full_Name").value;
-const Username = document.querySelector("#Username").value;
-
-
-
+const confirmPasswordInput = document.querySelector('#check_password');
+const passwordError = document.querySelector('#passwordError');
+const signupForm = document.querySelector('#signupForm');
 console.log(emailInput);
 console.log(emailError);
 console.log(passwordInput);
 console.log(togglePassword);
-console.log(confirmPasswordInputError)
-
+console.log(confirmPasswordInput)
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-emailInput.addEventListener('focusout', (e) => {
+emailInput.addEventListener('focusout', () => {
     // something@something.something
     // e.preventDefault();
     console.log(emailInput.value);
@@ -37,9 +23,7 @@ emailInput.addEventListener('focusout', (e) => {
     } else {
         emailError.classList.add('hidden');
     }
-})
-
-
+});
 togglePassword.addEventListener('click', () => {
     
     const type = passwordInput.getAttribute('type');
@@ -48,77 +32,81 @@ togglePassword.addEventListener('click', () => {
     console.log(newType);
     passwordInput.setAttribute('type', newType);
 
-})
+});
 
+confirmPasswordInput.addEventListener('input', () => {
+    const match = confirmPasswordInput.value === passwordInput.value;
+    passwordError.classList.toggle('hidden', match || confirmPasswordInput.value === '' || passwordInput.value === '');
+});
 
-const loginForm = document.querySelector('#loginForm');
-
-loginForm.addEventListener('submit', (e) => {
+signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(e);
 
-    const emailValue = emailInput.value;
-    const passwordValue = passwordInput.value;
+    const isPasswordMatch = passwordInput.value === confirmPasswordInput.value;
 
-    //double check this
-    if (passwordInput == document.getElementById('check_password').value){
-        console.log("Passwords match")
-    }else{
-        console.log("passwords do not match")
+    if (!isPasswordMatch) {
+        console.log("Passwords do not match");
+    } else {
+        console.log("Passwords match");
     }
 
+    CheckthingsFilled();
+});
 
-    console.log(emailValue);
-    console.log(passwordValue);
-    
-    
-})
-
-
-function checkAgeFunction(){
-    var checkBox = document. getElementById("checkage")
-    if(checkBox.checked == true){
-        console.log("User is 13+")
+function checkAgeFunction() {
+    if (document.getElementById("checkage").checked) {
+        console.log("User is 13+");
+    }
+    else {
+        console.log("User is under 13");
     }
 }
 
-
-function checkTOSFunction(){
-    var checkBox = document. getElementById("check_TOS")
-    if(checkBox.checked == true){
-        console.log("User agrees to TOS")
+function checkTOSFunction() {
+    if (document.getElementById("check_TOS").checked) {
+        console.log("User agrees to TOS");
+    }
+    else {
+        console.log("User does not agree to TOS");
     }
 }
 
-function CheckthingsFilled(){
-    var agecheck = document. getElementById("checkage");
-    var tos = document. getElementById("check_TOS");
-    var password = document.getElementById("password").value;
-    var confirmpassword = document.getElementById("check_password").value;
-    var username = document.getElementById("Username").value;
-    var full_name = document.getElementById("Full_Name").value;
-    isValid = true
+function CheckthingsFilled() {
+    const fullName = document.getElementById("Full_Name").value;
+    const username = document.getElementById("Username").value;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+    const ageChecked = document.getElementById("checkage").checked;
+    const tosChecked = document.getElementById("check_TOS").checked;
 
-    if (password == ""){
-        console.log("password has not been entered")
-        isValid = false
-    }
-    if(username ==""){
-        console.log("user name is not filled")
-        isValid = false
-    }
-    if(full_name==""){
-        console.log("full name is not filled")
-        isValid = false
-    }
+    let isValid = true;
 
-    if (password == confirmpassword == true && isValid == true){
-        if(agecheck.checked && tos.checked==true ){
-            console.log("The user is eligiable")
-        }else{
-            console.log("User is not eligible")
-        }
-
+    if (!fullName) {
+        console.log("Full name is not filled");
+        isValid = false;
+    }
+    if (!username) {
+        console.log("Username is not filled");
+        isValid = false;
+    }
+    if (!email) {
+        console.log("Email is not filled");
+        isValid = false;
+    }
+    if (!password) {
+        console.log("Password has not been entered");
+        isValid = false;
     }
 
+    if (
+        isValid &&
+        password === confirmPassword &&
+        ageChecked &&
+        tosChecked
+    ) {
+        console.log("The user is eligible");
+    } else {
+        console.log("The user is ineligible");
+    }
 }
