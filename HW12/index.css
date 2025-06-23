@@ -1,0 +1,21 @@
+#hero {
+    width: 100%;
+    height: 30vh;
+    background-color: pink;
+}
+
+#whyUs {
+    width: 40%;
+}
+
+@media (max-width: 800px) {
+    #whyUs,
+    #callToAction {
+        width: 100%;
+    }
+}
+#playersCards li {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
