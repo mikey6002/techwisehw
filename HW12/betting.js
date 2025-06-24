@@ -35,7 +35,7 @@ function getRandomCard() {
     return `${value} of ${suit}`;
 }
 
-//Dealing two random cards and show users  in the UI
+// two random cards and show users  in the UI
 function dealPlayerCards() {
     const playerCardSection = document.getElementById("playersCards");
     playerCardSection.innerHTML = ""; 
@@ -69,12 +69,59 @@ function makeWager() {
     console.log("Wager placed: $" + wager);
     setBankroll(getBankroll() - wager);
 
-    // Deal cards to the player
+    // Dealing player
     dealPlayerCards();
 
-    // Continue to the play screen
+    
     timeToPlay();
 }
 
-// Automatically start betting screen on load
+// Player action functions
+function hit() {
+    const playerCardSection = document.getElementById("playersCards");
+    const newCard = getRandomCard();
+    
+    const cardElement = document.createElement("li");
+    cardElement.textContent = newCard;
+    playerCardSection.appendChild(cardElement);
+    
+    console.log("Player hit: " + newCard);
+}
+
+function stand() {
+    console.log("Player stands");
+    alert("You chose to stand!");
+}
+
+function double() {
+    const wagerInput = document.getElementById("users-wager");
+    const originalWager = parseInt(wagerInput.value, 10) || 0;
+    
+    if (originalWager > getBankroll()) {
+        alert("Insufficient funds to double down.");
+        return;
+    }
+    
+    setBankroll(getBankroll() - originalWager);
+    hit(); // Dealing one more card
+    console.log("Player doubled down");
+    alert("You doubled down! One more card dealt.");
+}
+
+function split() {
+    console.log("Player split");
+    alert("I don't know how to handle splitting yet.");
+}
+
+function surrender() {
+    console.log("Player surrendered");
+    const wagerInput = document.getElementById("users-wager");
+    const wager = parseInt(wagerInput.value, 10) || 0;
+    
+    // Return half the money that was bet on the game
+    setBankroll(getBankroll() + Math.floor(wager / 2));
+    alert("You surrendered and received half your wager back.");
+    timeToBet(); // Starts new round
+}
+
 window.onload = timeToBet;

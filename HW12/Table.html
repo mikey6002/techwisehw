@@ -5,59 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/common.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
-    <script src="scripts/betting.js"></script>
-
-    <title>Game Table</title>
-    <script>
-        let bankroll = 2022;
-    
-        function getBankroll() {
-            return bankroll;
-        }
-    
-        function setBankroll(newBalance) {
-            if (Number.isInteger(newBalance)) {
-                bankroll = newBalance;
-                document.getElementById("bankroll-display").innerText = "$" + bankroll;
-            } else {
-                console.error("Bankroll must be an integer.");
-            }
-        }
-    
-        function timeToBet() {
-            document.getElementById("playersActions").classList.add("hidden");
-            document.getElementById("betting").classList.remove("hidden");
-            document.getElementById("bankroll-display").innerText = "$" + getBankroll();
-        }
-    
-        function timeToPlay() {
-            document.getElementById("betting").classList.add("hidden");
-            document.getElementById("playersActions").classList.remove("hidden");
-        }
-    
-        function makeWager() {
-            const wagerInput = document.getElementById("users-wager");
-            const wager = parseInt(wagerInput.value, 10);
-    
-            if (!Number.isInteger(wager) || wager <= 0) {
-                alert("Please enter a valid wager.");
-                return;
-            }
-    
-            if (wager > getBankroll()) {
-                alert("Insufficient funds.");
-                return;
-            }
-    
-            console.log("Wager placed: $" + wager);
-            setBankroll(getBankroll() - wager);
-            timeToPlay();
-        }
-    
-        window.onload = timeToBet;
-    </script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link href="https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+    <script src="betting.js"></script>    <title>Game Table</title>
     
 </head>
 <body>
