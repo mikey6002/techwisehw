@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Yu-Gi-Oh Card Lookup - Find Your Favorite Cards</title>
+  <meta name="description" content="Search and discover Yu-Gi-Oh trading cards with detailed information, images, and stats.">
+</head>
+
+<body>
+  <div id="picture">
+    <div class="content-wrapper">
+      <div class="header">
+        <h1>Yu-Gi-Oh Card Lookup</h1>
+        <p>Discover the world of Yu-Gi-Oh trading cards</p> 
+      </div>
+
+
+      <div class="search-container">
+        <input 
+          id="yu-gi-oh-card-lookup" 
+          type="text"
+          placeholder="Enter a card name (e.g., Dark Magician)" 
+          aria-label="Card name search"
+        >
+        <button onclick="lookup()" aria-label="Search for card"> Search Card </button>
+      </div>
+
+
+      <div id="result" role="region" aria-live="polite" aria-label="Search results"></div>
+    </div>
+
+    <div class="about-section">
+      <h2>About Yu-Gi-Oh!</h2>
+      <p>Yu-Gi-Oh! is a TCG game developed by Konami. The game is played between two players, using decks of cards that represent monsters, spells, and traps.</p>
+      <p><b>How to use:</b></strong> Simply type a card name in the search bar above and click "Search Card" to display detailed information including stats, description, and card image.</p>
+      <p><strong>Try searching for:</strong> "Dark Magician", "Blue-Eyes White Dragon", or "Pot of Greed"</p>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Barry Lin | Yu-Gi-Oh Card Database</p>
+    </footer>
+  </div>
+
+
+<!--Yu Gi Oh API stuff-->
+  <script>
+    let isLoading = false;
+
+    document.getElementById('yu-gi-oh-card-lookup').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        lookup();
+      }
+    });
+
+    async function lookup() {
+      if (isLoading) return;
+      
+      const inputElement = document.getElementById('yu-gi-oh-card-lookup');
+      const name = inputElement.value.trim();
+      const resultElement = document.getElementById('result');
+      
+      if (!name) {
+        showMessage("Please enter a card name to search.", "error");
+        inputElement.focus();
+        return;
+      }
+      
+      isLoading = true;
+      showLoading();
+      
+      // Clear previous results
+      //getting card from database
+      try {
+        const res = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${encodeURIComponent(name)}`);
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
+        const data = await res.json();
+      
+        // check if card exists
+        if (data.error) {
+          showMessage(`Card not found: ${data.error}`, "error");
+          return;
+        }
+        
+        const card = data.data[0];
+        displayCard(card);
+      //API error handling
+      } catch (error) {
+        console.error('Error fetching card:', error);
+        showMessage("Sorry, there was an error searching for the card. Please try again.", "error");
+      } finally {
+        isLoading = false;
+      }
+    }
+    // show loading state 
+    function showLoading() {
+      const resultElement = document.getElementById('result');
+      resultElement.innerHTML = '<div class="loading"></div><p>Searching for your card...</p>';
+    }
+    //show error message or success message
+    function showMessage(message, type = "error") {
+      const resultElement = document.getElementById('result');
+      resultElement.innerHTML = `<div class="${type}">${message}</div>`;
+    }
+    
+    //Displays the card information
+    function displayCard(card) {
+      const resultElement = document.getElementById('result');
+      
+      let statsHTML = '';
+      if (card.atk !== undefined && card.def !== undefined) {
+        statsHTML = `<p><strong> ATK:</strong> ${card.atk} | <strong> DEF:</strong> ${card.def}</p>`;
+      }
+      
+      //Showing  the level of the card if it exists
+      let levelHTML = '';
+      if (card.level) {
+        levelHTML = `<p><strong> Level:</strong> ${card.level}</p>`;
+      }
+      // Showing the attribute of the card if it exists
+      let attributeHTML = '';
+      if (card.attribute) {
+        attributeHTML = `<p><strong> Attribute:</strong> ${card.attribute}</p>`;
+      }
+      
+      resultElement.innerHTML = `
+        <div class="success">Card found successfully!</div>
+        <h2>${card.name}</h2>
+        <p> <strong> Type:</strong> ${card.type}</p>
+        ${levelHTML}
+        ${attributeHTML}
+        ${statsHTML}
+        <img src="${card.card_images[0].image_url}" alt="${card.name} card image" loading="lazy">
+        <p><strong> Description:</strong></p>
+        <p>${card.desc}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
