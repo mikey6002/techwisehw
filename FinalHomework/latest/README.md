@@ -1,6 +1,6 @@
 # BlackJack Final Homework
 
-#Level Completed: 3.6 
+# Level Completed: 3.6 
 
 #What Works:
 1. Has an express server
@@ -12,13 +12,13 @@
 7. Working API
 8. Basic UX/UI
 
-#What Does Not Work:
+# What Does Not Work:
 1. Did not handle delete
 2. Half working CRUD Intergration
 3. Did not have all loading states
 4. Does not have a global state
 
-#To run this game:
+# To run this game:
 1. Download FinalHomework and all of its files
 2. Download Vite + React
 3. Download MongoDb and Mongoose
