@@ -2,7 +2,7 @@
 
 # Level Completed: 3.6 
 
-#What Works:
+# What Works:
 1. Has an express server
 2. Has Get/Post
 3. Send and recieve JSON
