@@ -30,3 +30,6 @@
 9. repeat steps 5-6
 10. npm run dev
 
+
+<img width="864" alt="Screenshot 2025-05-12 at 7 29 09 PM" src="https://github.com/user-attachments/assets/5d201290-f45b-4a15-abb1-04cd1dbe3e7e" />
+
