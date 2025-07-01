@@ -1,12 +1,32 @@
-# React + Vite
+# BlackJack Final Homework
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#Level Completed: 3.6 
 
-Currently, two official plugins are available:
+#What Works:
+1. Has an express server
+2. Has Get/Post
+3. Send and recieve JSON
+4. Creates model Player and Sessions specfically stores wins/loss, account created, and money left
+5. Fetch data from backend
+6. Displays win/loss/tie and shows cards
+7. Working API
+8. Basic UX/UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#What Does Not Work:
+1. Did not handle delete
+2. Half working CRUD Intergration
+3. Did not have all loading states
+4. Does not have a global state
 
-## Expanding the ESLint configuration
+#To run this game:
+1. Download FinalHomework and all of its files
+2. Download Vite + React
+3. Download MongoDb and Mongoose
+4. open terminal and use the following commands
+5. cd FinalHomework
+6. cd latest
+7. npm run server
+8. open a new terminal
+9. repeat steps 5-6
+10. npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
