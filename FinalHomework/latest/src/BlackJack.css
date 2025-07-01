@@ -1,0 +1,180 @@
+.blackjack-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background: rgba(30, 41, 59, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex: 1;
+}
+
+.blackjack-container h1 {
+  color: #fff;
+  margin-bottom: 2rem;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.game-info {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.money, .bet {
+  background: green;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.message {
+  background: blue;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  max-width: 400px;
+}
+
+.betting-section {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.betting-section input {
+  padding: 0.8rem;
+  font-size: 1.1em;
+  border: 2px solid #646cff;
+  border-radius: 8px;
+  width: 200px;
+  text-align: center;
+}
+
+.betting-section button, .actions button, .game-over button {
+  background:rgb(171, 79, 232);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.betting-section button:hover, .actions button:hover, .game-over button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.betting-section button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.game-area {
+  margin: 2rem 0;
+}
+
+.dealer-section, .player-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.dealer-section h3, .player-section h3 {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.5em;
+}
+
+.dealer-section {
+  background: red;
+}
+
+.player-section {
+  background: rgb(20, 198, 20);
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+
+.card img {
+  width: 80px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.card-back {
+  width: 80px;
+  height: 110px;
+  background: linear-gradient(45deg, #1a1a1a, #333);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: #646cff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.actions {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.game-over h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8em;
+}
+
+.card {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Card suit colors */
+.card[data-suit="HEARTS"], .card[data-suit="DIAMONDS"] {
+  color: #dc2626;
+}
+
+.card[data-suit="CLUBS"], .card[data-suit="SPADES"] {
+  color: #1f2937;
+}
